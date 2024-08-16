@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Night Convincer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            overflow: hidden;
+        }
+
+        #content {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        button {
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 50px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .anime-character {
+            position: absolute;
+            top: -130px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: auto;
+            z-index: 10;
+        }
+
+        .background-design {
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-design"></div>
+    <div id="content">
+        <img src="/mnt/data/A_cute_anime_character_with_a_cheerful_and_friendl.png" alt="Anime Character" class="anime-character">
+        <h1>Who wants to go for a movie next week?</h1>
+        <button onclick="yesResponse()">Yes</button>
+        <button onclick="noResponse()">No</button>
+    </div>
+
+    <script>
+        let step = 0;
+
+        const messages = [
+            "Come on, it's going to be fun! We can grab some popcorn and watch a great movie together. Are you sure you don't want to join?",
+            "Think about all the good times we've had at the movies. It won't be the same without you. Are you sure you don't want to come?",
+            "You know we always have a blast at the movies! What if it's the best movie ever? You wouldn't want to miss that, right?",
+            "We'll even let you pick the movie! Imagine watching your favorite genre with friends. Tempted yet?",
+            "This is your last chance! We really want you there, and it's going to be a blast. Will you join us?",
+            "Great! You're coming along! We knew you couldn't resist!"
+        ];
+
+        function yesResponse() {
+            document.getElementById('content').innerHTML = `<h1>Awesome! Please cast your vote in the WhatsApp group.</h1>`;
+        }
+
+        function noResponse() {
+            if (step < 4) {
+                document.getElementById('content').innerHTML = `<h1>${messages[step]}</h1><button onclick="yesResponse()">Yes</button><button onclick="noResponse()">No</button>`;
+                step++;
+            } else {
+                document.getElementById('content').innerHTML = `<h1>${messages[4]}</h1><button onclick="yesResponse()">Yes, I'm in!</button><button onclick="yesResponse()">Yes, I can't resist anymore!</button>`;
+            }
+        }
+    </script>
+</body>
+</html>
